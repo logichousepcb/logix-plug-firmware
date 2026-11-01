@@ -85,8 +85,8 @@ an unused input.
 With no `LedLink` pin in the template, Tasmota also uses this one LED to blink the Wi-Fi /
 MQTT link state while it is not connected.
 
-**Not yet confirmed on site:** that pressing the button toggles the lamp, and that the LED
-on the case is the GPIO12 LED (and whether it is lit when the relay is on or off). Both
+**Confirmed on site (2026-11-01):** the GPIO13 button toggles the lamp (see §12). Still to
+confirm: that the LED on the case is the GPIO12 LED and is lit while the relay is on. Both
 public pin maps agree with the template, so the firmware assumes so.
 
 ## 5. Energy monitoring
@@ -203,11 +203,13 @@ The full `Status 0` response from the survey is kept here for reference (trimmed
 
 ## 12. Open items
 
-- **Confirm on site after the install:** the button toggles the lamp, and the LED is lit while
-  the lamp is on. The firmware's `/api/status` shows the raw button state (`"button": true`
-  while it is held), which helps if the button turns out to be on another pin.
+- **Confirm on site:** that the LED on the case is lit while the lamp is on (GPIO12, active low).
 
 ### Resolved
+
+- **Button confirmed 2026-11-01** under Logix Plug: 3 presses on GPIO13 gave 3 clean toggles
+  (on, off, on), with `pressCount` 3 and no double counts. The raw input read pressed/released
+  as expected.
 
 - **Installed Logix Plug 1.0.0 on 2026-11-01** over Tasmota's upload form (`firmware.bin.gz`).
   The first boot imported the Tasmota 12.0.2 settings from `0xFA000`: WiFi `ESP`, MQTT
